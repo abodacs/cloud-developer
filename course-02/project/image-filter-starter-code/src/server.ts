@@ -13,7 +13,12 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
 
- 
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin",  `http://localhost:${ port }`);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    next();
+  });
+  
   interface IFilteredImageRequest extends express.Request {
     params: {	   
        query: {
