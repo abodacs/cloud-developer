@@ -13,7 +13,7 @@ spec:
         api: external        
     spec:
       containers:
-      - image: abodacs/udacity-frontend
+      - image: abodacs/udacity-frontend:local
         name: frontend
         imagePullPolicy: Always          
         ports:
