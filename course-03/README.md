@@ -1,13 +1,15 @@
 # Section: Monolith to Microservices at Scale
 ## Project: Refactor Udagram app into Microservices and Deploy
 
+[![Build Status](https://travis-ci.org/abodacs/cloud-developer.svg?branch=master)](https://travis-ci.org/abodacs/cloud-developer)
+
 ### Links
 **Docker Hub**: https://hub.docker.com/u/abodacs
 
 ### Secrets and ConfigMaps to set
-In order to run the application on Kuberenetes you need to edit the following files with your specific settings/env variables:
-	udacity-c3-deployment/k8s/aws-secret.yaml
-	udacity-c3-deployment/k8s/env-configmap.yaml
+In order to run the application on Kuberenetes you need to edit the following files with your specific settings/env variables:\
+	udacity-c3-deployment/k8s/aws-secret.yaml\
+	udacity-c3-deployment/k8s/env-configmap.yaml\
 	udacity-c3-deployment/k8s/env-secret.yaml
 
 ### To setup the application
@@ -39,7 +41,7 @@ http://localhost:8100
 
 > In case you needed to debug one the pods that are not running well, the following commands might help
 
-`kubectl logs podName`
-`kubectl logs --follow podName`
-`kubectl get all`
+`kubectl logs podName`\
+`kubectl logs --follow podName`\
+`kubectl get all`\
 `kubectl describe deployments/backend-feed`
