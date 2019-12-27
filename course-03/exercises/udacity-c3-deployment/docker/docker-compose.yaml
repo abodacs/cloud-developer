@@ -35,6 +35,6 @@ services:
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
   frontend:
-    image: abodacs/udacity-frontend:local
+    image: abodacs/udacity-frontend
     ports:
       - "8100:80"
