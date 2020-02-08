@@ -5,7 +5,7 @@ import { CreateTodoRequest } from '../requests/CreateTodoRequest'
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
 import { TodosAccess } from '../dataLayer/todosAccess'
 
-const todoBucket = process.env.S3_BUCKET
+const todoBucket = process.env.ATTACHMENT_S3_BUCKET
 
 const todosAccess = new TodosAccess()
 

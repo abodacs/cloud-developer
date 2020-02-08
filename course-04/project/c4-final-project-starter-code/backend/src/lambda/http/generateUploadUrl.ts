@@ -7,7 +7,7 @@ const awsS3 = new AWS.S3({
   signatureVersion: 'v4'
 })
 
-const todoBucket = process.env.S3_BUCKET
+const todoBucket = process.env.ATTACHMENT_S3_BUCKET
 const signedUrlExpires = parseInt(process.env.SIGNED_URL_EXPIRATION)
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {

@@ -5,7 +5,6 @@ plugins:
   - serverless-webpack
   - serverless-iam-roles-per-function
   - serverless-reqvalidator-plugin
-  - serverless-aws-documentation
 
 provider:
   name: aws
@@ -14,9 +13,9 @@ provider:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
   environment:
     PROJECT_NAME: udacity-cloud-developer-project4
-    USER_ID_INDEX: userIdIndex
+    USER_ID_INDEX: UserIdIndex
     TODOS_TABLE: udacity-project4-serverless-application-todo-${self:provider.stage}
-    S3_BUCKET_NAME: udacity-project4-serverless-application-attachment-${self:provider.stage}
+    ATTACHMENT_S3_BUCKET: udacity-project4-serverless-application-attachment-${self:provider.stage}
     SIGNED_URL_EXPIRATION: 300
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
 
@@ -24,37 +23,37 @@ provider:
   region: ${opt:region, 'us-east-1'}
 
   custom:
-  documentation:
-    api:
-      info:
-        version: '1.0.0'
-        title: udacity-project4-todo-api
-        description: udacity-project4-todo-api
-    models:
-      - name: CreateTodoRequest
-        contentType: "application/json"
-        schema:
-          required:
-            - name
-            - dueDate
-          properties:
-            name:
-              type: string
-            dueDate:
-              type: string
-      - name: UpdateTodoRequest
-        contentType: "application/json"
-        schema:
-          required:
-            - name
-            - dueDate
-            - done
-          properties:
-            name:
-              type: string
-            dueDate:
-              type: string
-            done:
+    documentation:
+      api:
+        info:
+          version: '1.0.0'
+          title: udacity-project4-todo-api
+          description: udacity-project4-todo-api
+      models:
+        - name: CreateTodoRequest
+          contentType: "application/json"
+          schema:
+            required:
+              - name
+              - dueDate
+            properties:
+              name:
+                type: string
+              dueDate:
+                type: string
+        - name: UpdateTodoRequest
+          contentType: "application/json"
+          schema:
+            required:
+              - name
+              - dueDate
+              - done
+            properties:
+              name:
+                type: string
+              dueDate:
+                type: string
+              done:
 
 functions:
 
@@ -151,7 +150,7 @@ functions:
         Action:
           - s3:PutObject
           - s3:GetObject
-        Resource: arn:aws:s3:::${self:provider.environment.S3_BUCKET_NAME}/*
+        Resource: arn:aws:s3:::${self:provider.environment.ATTACHMENT_S3_BUCKET}/*
 
 resources:
   Resources:
@@ -201,7 +200,7 @@ resources:
     AttachmentsBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: ${self:provider.environment.S3_BUCKET_NAME}
+        BucketName: ${self:provider.environment.ATTACHMENT_S3_BUCKET}
         CorsConfiguration:
           CorsRules:
             - 
