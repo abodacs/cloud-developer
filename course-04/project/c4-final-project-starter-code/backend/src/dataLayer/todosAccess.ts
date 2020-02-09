@@ -52,14 +52,15 @@ export class TodosAccess {
                 userId,
                 todoId
             },
-            UpdateExpression: "set #name = :name, dueDate = :dueDate, done = :done",
+            UpdateExpression: "set #n = :name, dueDate = :dueDate, done = :done",
             ExpressionAttributeValues: {
                 ":name": todoItem.name,
                 ":dueDate": todoItem.dueDate,
                 ":done": todoItem.done 
             },
             ExpressionAttributeNames: {
-                ":name": 'name'
+                "#n": 'name'
+                // name conflicts with dynamos reserved words: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ReservedWords.html
             }
         }).promise()
 
